@@ -1,87 +1,70 @@
-# Project Title
+# Application of few shot learning
 
-One Paragraph of project description goes here
+This is the code repository of my master thesis, the goal of the thesis is going to use the techniques of few shot learning to solve the problem where we can use the advantage of deep learning even if we only have less data.
 
-## Getting Started
+## Things to do
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
+* create generate_dataset.py: For each image sets, you can generate a torch dataset for training and testing.
+* traing.py, test.py
+* 
 ### Prerequisites
 
 What things you need to install the software and how to install them
 
 ```
-Give examples
+python3
 ```
 
 ### Installing
 
 A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
 ```
 until finished
 ```
+### Structure of dataset
 
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
+If you want to use your own dataset to train and test the model, you should make it look like:
 ```
-Give an example
-```
+data/
+├── own_dataset/
+	├── images_1_label_1.jpg  
+	├── images_2_label_1.jpg 
+	...
+  └── images_k_label_n.jpg
 
-### And coding style tests
+model/
+├── generate_dataset.py
+├── train.py
+├── test.py
+├── util.py
+└── Readme.md
 
-Explain what these tests test and why
-
-```
-Give an example
+result/
 ```
 
-## Deployment
+## Train the model
 
-Add additional notes about how to deploy this on a live system
+First of all, train the model using different dataset with different parameters:
+```
+python train.py -d [DATASET] -n [#WAY] -s [#SHOT]
+```
+NOTICE: You can choose DATASET as omniglot, miniimagenet, and the name of the folder you create above.
+#WAY is the number of classes used for training, #SHOT is the number of training data per iteration.
 
-## Built With
+## Test the model
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+Test the model with a new image:
+```
+python test.py -f ./directory/to/image.jpg
+```
+or choose a number of random images from training set:
+```
+python test.py -f [#IMAGE]
+```
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+* **Yuan Yao** - *Initial work* - 
 
 ## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* 
