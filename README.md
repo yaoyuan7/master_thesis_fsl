@@ -2,11 +2,13 @@
 
 This is the code repository of my master thesis, the goal of the thesis is going to use the techniques of few shot learning to solve the problem where we can use the advantage of deep learning even if we only have less data.
 
+# Motivation
+* The general motivation of this project is that I want to apply the techniques of unsupervised or semi-supervised learning on the recent developing meta-learning problem, few-shot learning. 
+* The baseline model I will use is prototypical network, which learns a shallow CNN to extract such features that can largely distinguish the inter-differences of testing set. Prototypical network doesn't learn all the features, but it learns what are the most important features for classification. That is so-called Meta Learning.
+* Meta learning model doesn't performs well when it encounters these problems: 1. Dataset is not large enough, which means the model cannot learn as much as possible if there are only few data, and one of the solutions is to use VAE or GAN to generate more data. 2. There are many unlabelled data, which means the model cannot use unlabelled data for training, and one of the solutions is to use unsupervised algorithms to cluster the unlabelled data first and then use the clutered data for training.
+* Now (Oct 16th), I am working on the first problem.
 ## Things to do
 
-* create generate_dataset.py: For each image sets, you can generate a torch dataset for training and testing.
-* traing.py, test.py
-* 
 ### Prerequisites
 
 What things you need to install the software and how to install them
@@ -26,12 +28,6 @@ until finished
 If you want to use your own dataset to train and test the model, you should make it look like:
 ```
 data/
-├── own_dataset/
-	├── images_1_label_1.jpg  
-	├── images_2_label_1.jpg 
-	...
-  └── images_k_label_n.jpg
-
 model/
 ├── generate_dataset.py
 ├── train.py
